@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Transaction Details</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Information">
+      <app-transaction-info [data]="data"></app-transaction-info>
+    </mat-tab>
+    <mat-tab label="Flag">
+      <app-transaction-flag [data]="data"></app-transaction-flag>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <a [href]="'./accounts/' + data.account.id" mat-button>Go to account</a>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

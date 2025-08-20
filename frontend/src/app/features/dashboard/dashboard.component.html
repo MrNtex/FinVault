@@ -1,0 +1,168 @@
+<div class="dashboard-container">
+  <!-- Welcome Section -->
+  <div class="welcome-section">
+    <h1>Bank Management Dashboard</h1>
+    <p class="subtitle">Key metrics and insights for bank operations</p>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="summary-grid">
+    <!-- Risk Score Card -->
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="card-header">
+          <mat-icon class="card-icon">warning</mat-icon>
+          <span class="card-title">Risk Score</span>
+        </div>
+        <div class="card-value">{{riskScore}}%</div>
+        <div class="card-trend" [class.positive]="riskTrend < 0" [class.negative]="riskTrend > 0">
+          <mat-icon>{{riskTrend < 0 ? 'trending_down' : 'trending_up'}}</mat-icon>
+          <span>{{riskTrend}}% change</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Suspicious Activity Card -->
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="card-header">
+          <mat-icon class="card-icon">security</mat-icon>
+          <span class="card-title">Suspicious Activities</span>
+        </div>
+        <div class="card-value">{{suspiciousActivities}}</div>
+        <div class="card-trend" [class.positive]="suspiciousTrend < 0" [class.negative]="suspiciousTrend > 0">
+          <mat-icon>{{suspiciousTrend < 0 ? 'trending_down' : 'trending_up'}}</mat-icon>
+          <span>{{suspiciousTrend}}% from last month</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Compliance Status Card -->
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="card-header">
+          <mat-icon class="card-icon">gavel</mat-icon>
+          <span class="card-title">Compliance Status</span>
+        </div>
+        <div class="card-value">{{complianceScore}}%</div>
+        <div class="card-trend" [class.positive]="complianceTrend > 0" [class.negative]="complianceTrend < 0">
+          <mat-icon>{{complianceTrend > 0 ? 'trending_up' : 'trending_down'}}</mat-icon>
+          <span>{{complianceTrend}}% change</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Total Assets Card -->
+    <a routerLink="/assets" style="text-decoration: none;">
+      <mat-card class="summary-card">
+        <mat-card-content>
+          <div class="card-header">
+            <mat-icon class="card-icon">account_balance</mat-icon>
+            <span class="card-title">Total Assets</span>
+          </div>
+          <div class="card-value">{{totalAssets | currency}}</div>
+          <div class="card-trend" [class.positive]="assetsTrend > 0" [class.negative]="assetsTrend < 0">
+            <mat-icon>{{assetsTrend > 0 ? 'trending_up' : 'trending_down'}}</mat-icon>
+            <span>{{assetsTrend}}% from last quarter</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </a>
+  </div>
+
+  <!-- Risk Analysis Section -->
+  <div class="analysis-section">
+    <div class="section-header">
+      <h2>Risk Analysis</h2>
+      <button mat-button color="primary" routerLink="/reports/risk">
+        View Detailed Report
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+
+    <mat-card class="analysis-card">
+      <mat-card-content>
+        @if (isLoading) {
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        } @else {
+          <div class="risk-metrics">
+            <div class="risk-metric">
+              <span class="metric-label">High Risk Transactions</span>
+              <span class="metric-value">{{highRiskTransactions}}</span>
+            </div>
+            <div class="risk-metric">
+              <span class="metric-label">Unusual Patterns</span>
+              <span class="metric-value">{{unusualPatterns}}</span>
+            </div>
+            <div class="risk-metric">
+              <span class="metric-label">Regulatory Violations</span>
+              <span class="metric-value">{{regulatoryViolations}}</span>
+            </div>
+          </div>
+        }
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Recent Alerts Section -->
+  <div class="alerts-section">
+    <div class="section-header">
+      <h2>Recent Alerts</h2>
+      <button mat-button color="primary" routerLink="/transactions">
+        View All Transactions
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+
+    <mat-card class="alerts-card">
+      <mat-card-content>
+        @if (isLoading) {
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        } @else if (recentAlerts.length === 0) {
+          <div class="no-data">
+            <mat-icon>notifications_off</mat-icon>
+            <p>No recent alerts</p>
+          </div>
+        } @else {
+          <div class="alert-list">
+            @for (alert of recentAlerts; track alert.id) {
+              <div class="alert-item" 
+                   [class.high-priority]="alert.priority === 'high'"
+                   (click)="openTransactionDialog(alert)"
+                   style="cursor: pointer;">
+                <div class="alert-info">
+                  <span class="alert-title">{{alert.title}}</span>
+                  <span class="alert-time">{{alert.timestamp | date:'medium'}}</span>
+                </div>
+                <span class="alert-priority">{{alert.priority}}</span>
+              </div>
+            }
+          </div>
+        }
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="actions-grid">
+      <button mat-raised-button color="primary" routerLink="/reports/risk">
+        <mat-icon>assessment</mat-icon>
+        Risk Report
+      </button>
+      <button mat-raised-button color="accent" routerLink="/compliance">
+        <mat-icon>gavel</mat-icon>
+        Compliance Check
+      </button>
+      <button mat-raised-button color="primary" routerLink="/assets">
+        <mat-icon>account_balance</mat-icon>
+        View Assets
+      </button>
+      <button mat-raised-button routerLink="/settings">
+        <mat-icon>settings</mat-icon>
+        System Settings
+      </button>
+    </div>
+  </div>
+</div> 

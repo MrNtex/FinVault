@@ -1,0 +1,130 @@
+
+/* Filter Controls */
+.filter-controls {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0e0;
+}
+
+.filter-controls .filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.filter-controls .filter-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.25rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-controls .filter-header h3 .title-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: #666;
+}
+
+.filter-controls .filter-header button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.filter-controls .filter-header button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.filter-controls .filter-header button:hover {
+  background-color: #f5f5f5;
+}
+
+.filter-controls .filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.filter-controls .filter-grid mat-form-field {
+  width: 100%;
+}
+
+.filter-controls .filter-grid mat-form-field ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.filter-controls .filter-grid mat-form-field ::ng-deep .mat-mdc-form-field-infix {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.filter-controls .filter-grid mat-form-field ::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: #f8f9fa;
+}
+
+.filter-controls .filter-grid mat-form-field ::ng-deep .mat-mdc-form-field-focus-overlay {
+  background-color: #fff;
+}
+
+.filter-controls .filter-grid mat-form-field ::ng-deep .mat-mdc-input-element {
+  height: 24px;
+  line-height: 24px;
+}
+
+.filter-controls .filter-grid mat-form-field ::ng-deep .mat-mdc-select-value {
+  height: 24px;
+  line-height: 24px;
+}
+
+.filter-controls .filter-grid .field-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: middle;
+  color: #666;
+}
+
+.filter-controls .filter-grid .checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.filter-controls .filter-grid .checkbox-group mat-checkbox {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  height: 24px;
+}
+
+.filter-controls .filter-grid .checkbox-group mat-checkbox ::ng-deep .mdc-checkbox {
+  margin-right: 4px;
+}
+
+.filter-controls .filter-grid .checkbox-group mat-checkbox ::ng-deep .mdc-checkbox__background {
+  border-color: #666;
+}
+
+.filter-controls .filter-grid .checkbox-group mat-checkbox ::ng-deep .mdc-checkbox__ripple {
+  background-color: #666;
+}

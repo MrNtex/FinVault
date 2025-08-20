@@ -1,0 +1,8 @@
+.debug-button {
+  margin: 16px 0;
+  background-color: #ff4081;
+}
+
+.debug-button:hover {
+  background-color: #f50057;
+}

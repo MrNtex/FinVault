@@ -1,0 +1,11 @@
+<div>
+  <h1 class="page-title">Transactions</h1>
+  <div class="page-description">
+    View and manage your transactions here.
+  </div>
+  <app-transactions-filter></app-transactions-filter>
+  <button mat-raised-button color="primary" (click)="openCreateTransactionDialog()" class="debug-button">
+    Debug: Create Transaction
+  </button>
+  <app-transactions-table></app-transactions-table>
+</div>

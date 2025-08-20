@@ -1,0 +1,172 @@
+.account-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-info .account-title {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+
+.account-meta {
+  display: flex;
+  gap: 16px;
+  color: #666;
+}
+
+.account-number, .account-type {
+  font-size: 14px;
+}
+
+.account-balance {
+  text-align: right;
+}
+
+.balance-amount {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+  color: #2196f3;
+}
+
+.balance-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+}
+
+.action-button mat-icon {
+  margin-right: 4px;
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.grid-section {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+.transactions {
+  grid-column: 1 / -1;
+}
+
+.transactions-list {
+  min-height: 200px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.stat-card mat-icon {
+  color: #2196f3;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.settings-list mat-list-item {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.settings-list mat-list-item:hover {
+  background-color: #f5f5f5;
+}
+
+.settings-list mat-list-item mat-icon {
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .account-container {
+    padding: 16px;
+  }
+
+  .account-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .account-balance {
+    text-align: left;
+  }
+
+  .quick-actions {
+    flex-direction: column;
+  }
+
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+} 

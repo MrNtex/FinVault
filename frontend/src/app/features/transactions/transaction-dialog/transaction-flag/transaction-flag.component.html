@@ -1,0 +1,66 @@
+<div class="flag-container">
+  <div class="flag-header">
+    @if (data()?.flagged) {
+      <mat-icon [class]="'status-icon status-' + data()?.flagged?.status">flag</mat-icon>
+      <h3>Flagged Transaction</h3>
+    } @else {
+      <mat-icon class="status-icon">flag</mat-icon>
+      <h3>Transaction Flag</h3>
+    }
+  </div>
+
+  <div class="flag-details">
+    @if (data()?.flagged) {
+      <div class="detail-row">
+        <span class="label">Flag ID:</span>
+        <span class="value">{{data()?.flagged?.id}}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Flagged At:</span>
+        <span class="value">{{data()?.flagged?.flaggedAt | date:'medium'}}</span>
+      </div>
+    }
+
+    <div class="detail-row">
+      <span class="label">Reason:</span>
+      <mat-form-field class="reason-input">
+        <input matInput
+               [(ngModel)]="editedFlag.reason"
+               (ngModelChange)="onReasonChange()"
+               placeholder="Enter reason for flagging..."
+               [value]="data()?.flagged?.reason || ''">
+      </mat-form-field>
+    </div>
+
+    <div class="detail-row">
+      <span class="label">Status:</span>
+      <mat-form-field class="status-select">
+        <mat-select [(ngModel)]="editedFlag.status" (selectionChange)="onStatusChange()">
+          <mat-option [value]="FlaggedStatus.PENDING">Pending</mat-option>
+          <mat-option [value]="FlaggedStatus.RESOLVED">Resolved</mat-option>
+          <mat-option [value]="FlaggedStatus.DISMISSED">Dismissed</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="detail-row">
+      <span class="label">Resolution Notes:</span>
+      <mat-form-field class="notes-input">
+        <textarea matInput
+                  [(ngModel)]="editedFlag.resolutionNotes"
+                  (ngModelChange)="onNotesChange()"
+                  placeholder="Add notes about the resolution..."
+                  rows="3">
+        </textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="saveChanges()" [disabled]="!isEditing">
+      <mat-icon>save</mat-icon>
+      {{ data()?.flagged ? 'Update Flag' : 'Create Flag' }}
+    </button>
+  </div>
+</div>

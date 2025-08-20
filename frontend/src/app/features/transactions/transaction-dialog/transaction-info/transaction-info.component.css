@@ -1,0 +1,42 @@
+.transaction-info {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.transaction-info .info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.transaction-info .info-row:last-child {
+  border-bottom: none;
+}
+
+.transaction-info .info-row:hover {
+  background-color: #f8f9fa;
+}
+
+.transaction-info .info-row .label {
+  color: #6c757d;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.transaction-info .info-row .value {
+  color: #212529;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: right;
+}
+
+mat-dialog-content {
+  max-height: 70vh;
+}

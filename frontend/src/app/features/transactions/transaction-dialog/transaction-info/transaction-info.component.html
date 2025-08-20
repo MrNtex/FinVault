@@ -1,0 +1,30 @@
+<div class="transaction-info">
+  <div class="info-row">
+    <span class="label">Account Number:</span>
+    <span class="value">{{data().account.accountNumber}}</span>
+  </div>
+  <div class="info-row">
+    <span class="label">Account Type:</span>
+    <span class="value">{{data().account.type}}</span>
+  </div>
+  <div class="info-row">
+    <span class="label">Recipient IBAN:</span>
+    <span class="value">{{data().recipientIBAN}}</span>
+  </div>
+  <div class="info-row">
+    <span class="label">Description:</span>
+    <span class="value">{{data().description}}</span>
+  </div>
+  <div class="info-row">
+    <span class="label">Amount:</span>
+    <span class="value">{{data().amount | number:'1.2-2'}} {{data().account.currency}}</span>
+  </div>
+  <div class="info-row">
+    <span class="label">Date:</span>
+    <span class="value">{{data().date | date:'medium'}}</span>
+  </div>
+  <div class="info-row">
+    <span class="label">Transaction Type:</span>
+    <span class="value">{{data().transactionType}}</span>
+  </div>
+</div>

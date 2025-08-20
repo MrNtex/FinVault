@@ -1,0 +1,99 @@
+<div class="account-container">
+  <!-- Account Header Section -->
+  <div class="account-header">
+    <div class="account-info">
+      <h1 class="account-title">{{account?.type | titlecase}} Account</h1>
+      <div class="account-meta">
+        <span class="account-number">Account: {{account?.accountNumber}}</span>
+        <span class="account-type">{{account?.type | titlecase}}</span>
+      </div>
+    </div>
+    <div class="account-balance">
+      <h2 class="balance-amount">
+        @if (isLoadingBalance) {
+          <mat-spinner diameter="24"></mat-spinner>
+        } @else {
+          {{balance | number:'1.2-2'}} {{account?.currency}}
+        }
+      </h2>
+      <span class="balance-label">Current Balance</span>
+    </div>
+  </div>
+
+  <!-- Quick Actions Section -->
+  <div class="quick-actions">
+    <button mat-raised-button color="primary" class="action-button">
+      <mat-icon>add</mat-icon>
+      New Transaction
+    </button>
+    <button mat-raised-button class="action-button">
+      <mat-icon>history</mat-icon>
+      Transaction History
+    </button>
+    <button mat-raised-button class="action-button">
+      <mat-icon>download</mat-icon>
+      Export Statement
+    </button>
+  </div>
+
+  <!-- Account Details Grid -->
+  <div class="account-grid">
+    <!-- Recent Transactions Section -->
+    <div class="grid-section transactions">
+      <div class="section-header">
+        <h2>Recent Transactions</h2>
+        <button mat-button color="primary">View All</button>
+      </div>
+      <div class="transactions-list">
+        <app-transactions-filter></app-transactions-filter>
+        <app-transactions-table></app-transactions-table>
+      </div>
+    </div>
+
+    <!-- Account Statistics Section -->
+    <div class="grid-section statistics">
+      <div class="section-header">
+        <h2>Account Statistics</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <mat-icon>trending_up</mat-icon>
+          <div class="stat-info">
+            <span class="stat-value">$0.00</span>
+            <span class="stat-label">Monthly Income</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <mat-icon>trending_down</mat-icon>
+          <div class="stat-info">
+            <span class="stat-value">$0.00</span>
+            <span class="stat-label">Monthly Expenses</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Settings Section -->
+    <div class="grid-section settings">
+      <div class="section-header">
+        <h2>Account Settings</h2>
+      </div>
+      <div class="settings-list">
+        <mat-list>
+          <mat-list-item>
+            <mat-icon matListItemIcon>notifications</mat-icon>
+            <span matListItemTitle>Notifications</span>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>security</mat-icon>
+            <span matListItemTitle>Security Settings</span>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>description</mat-icon>
+            <span matListItemTitle>Account Documents</span>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </div>
+</div> 

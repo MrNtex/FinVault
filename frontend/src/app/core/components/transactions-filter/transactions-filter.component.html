@@ -1,0 +1,71 @@
+<div class="filter-controls">
+  <div class="filter-header">
+    <h3>
+      <mat-icon class="title-icon">filter_list</mat-icon>
+      Filters
+    </h3>
+    <button mat-button color="primary" (click)="clearFilters()">
+      <mat-icon>clear_all</mat-icon>
+      Clear All
+    </button>
+  </div>
+  
+  <div class="filter-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <mat-icon class="field-icon">category</mat-icon>
+        Transaction Type
+      </mat-label>
+      <mat-select [value]="(filters$ | async)?.transactionType" (selectionChange)="updateFilter('transactionType', $event.value)">
+        <mat-option value="">All Types</mat-option>
+        <mat-option [value]="TransactionType.CARD">Card</mat-option>
+        <mat-option [value]="TransactionType.TRANSFER">Transfer</mat-option>
+        <mat-option [value]="TransactionType.RECURRING">Recurring</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <mat-icon class="field-icon">arrow_downward</mat-icon>
+        Minimum Amount
+      </mat-label>
+      <input matInput type="number"
+       [value]="(filters$ | async)?.minAmount"
+       (input)="updateFilter('minAmount', $any($event.target).valueAsNumber)">
+      @if ((filters$ | async)?.minAmount) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="updateFilter('minAmount', undefined)">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>
+        <mat-icon class="field-icon">arrow_upward</mat-icon>
+        Maximum Amount
+      </mat-label>
+      <input matInput type="number"
+       [value]="(filters$ | async)?.maxAmount"
+       (input)="updateFilter('maxAmount', $any($event.target).valueAsNumber)">
+      @if ((filters$ | async)?.maxAmount) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="updateFilter('maxAmount', undefined)">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <div class="checkbox-group">
+      <mat-checkbox [checked]="(filters$ | async)?.showOnlyFlagged"
+              (change)="updateFilter('showOnlyFlagged', $event.checked)">
+        <mat-icon class="field-icon">flag</mat-icon>
+        Show Only Flagged Transactions
+      </mat-checkbox>
+
+      <mat-checkbox [checked]="(filters$ | async)?.showOnlyRecent"
+              (change)="updateFilter('showOnlyRecent', $event.checked)">
+        <mat-icon class="field-icon">schedule</mat-icon>
+        Show Only Recent (Last 30 Days)
+      </mat-checkbox>
+    </div>
+  </div>
+</div>
